@@ -6,19 +6,29 @@ module.exports = {
    
       await queryInterface.bulkInsert('language_masters',[
         {
-          name: 'Tamil', 
+          name: 'Tamil',
+          createdAt:new Date(),
+          updatedAt:new Date()   
         },
         {
           name:"English", 
+          createdAt:new Date(),
+          updatedAt:new Date()   
         },
         {
-          name: 'Hindi',    
+          name: 'Hindi',  
+          createdAt:new Date(),
+          updatedAt:new Date()     
         },
         {
           name:"Telugu",  
+          createdAt:new Date(),
+          updatedAt:new Date()   
         },
         {
           name:"Malayalam",
+          createdAt:new Date(),
+          updatedAt:new Date()   
         },
   
     ], {});

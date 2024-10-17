@@ -7,15 +7,21 @@ module.exports = {
      await queryInterface.bulkInsert('drug_category_masters', [
         {
           name: 'Medicine',
-          is_active:true
+          is_active:true,
+          createdAt:new Date(),
+          updatedAt:new Date()   
         },
         {
           name: 'Syrup',
-          is_active:true
+          is_active:true,
+          createdAt:new Date(),
+          updatedAt:new Date()   
         },
         {
           name: 'Ointment',
-          is_active:true
+          is_active:true,
+          createdAt:new Date(),
+          updatedAt:new Date()   
         },
 
     ], {});

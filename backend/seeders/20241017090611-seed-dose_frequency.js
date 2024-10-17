@@ -3,49 +3,40 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    
-      await queryInterface.bulkInsert('dose_timing_masters', [
+  
+      await queryInterface.bulkInsert('dose_frequency_masters', [
         {
-          name: 'Immediately',
+          name: 'Daily',
           createdAt:new Date(),
           updatedAt:new Date()   
         },
         {
-          name: '5 mins',
+          name: 'Alternate day',
           createdAt:new Date(),
           updatedAt:new Date()   
         },
         {
-          name: '10 mins',
+          name: 'Weekly ',
           createdAt:new Date(),
           updatedAt:new Date()   
         },
         {
-          name: '15 mins',
+          name: 'Weekly twice',
           createdAt:new Date(),
           updatedAt:new Date()   
         },
         {
-          name: '20 mins',
+          name: 'Weekly thrice ',
           createdAt:new Date(),
           updatedAt:new Date()   
         },
         {
-          name: '30 mins',
+          name: 'Monthly',
           createdAt:new Date(),
           updatedAt:new Date()   
         },
-        {
-          name: '40 mins',
-          createdAt:new Date(),
-          updatedAt:new Date()   
-        },
-        {
-          name: '1 hour',
-          createdAt:new Date(),
-          updatedAt:new Date()   
-        },
-      ], {});
+        
+    ], {});
     
   },
 
@@ -54,7 +45,7 @@ module.exports = {
      * Add commands to revert seed here.
      *
      * Example:
-     * await queryInterface.bulkDelete('People', null, {});
+     * await queryInterface.bulkDelete('dose_frequency_masters', null, {});
      */
   }
 };

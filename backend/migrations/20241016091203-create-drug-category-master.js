@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       is_active: {
-        type: Sequelize.DATE
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

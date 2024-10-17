@@ -14,7 +14,7 @@ module.exports = {
       drug_category_id: {
         type: Sequelize.INTEGER
       },
-      dose_id: {
+      dose_session_id: {
         type: Sequelize.INTEGER
       },
       dose_timing_id: {

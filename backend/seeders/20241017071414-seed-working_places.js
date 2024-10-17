@@ -8,27 +8,27 @@ module.exports = {
         {
           name: 'hospitals',
           is_active:true,
-          createdAt:Date(),
-          updatedAt:Date()
+          createdAt:new Date(),
+          updatedAt:new Date()
         },
         {
           name:"clinics",
           is_active:true,
-          createdAt:Date(),
-          updatedAt:Date()
+          createdAt:new Date(),
+          updatedAt:new Date()
         },
         {
           name: 'private practices',
           is_active:true,
-          createdAt:Date(),
-          updatedAt:Date()
+          createdAt:new Date(),
+          updatedAt:new Date()
           
         },
         {
           name:"other healthcare",
           is_active:true,
-          createdAt:Date(),
-          updatedAt:Date()
+          createdAt:new Date(),
+          updatedAt:new Date()
         },
 
     ], {});

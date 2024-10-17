@@ -7,14 +7,20 @@ module.exports = {
       await queryInterface.bulkInsert('drug_sessions_masters', [
         {
         name: 'Morning',
+        createdAt:new Date(),
+        updatedAt:new Date()   
         
        },
         {
         name: 'Afternoon',
+        createdAt:new Date(),
+        updatedAt:new Date()   
         
        },
         {
-        name: 'Night',
+        name:'Night',
+        createdAt:new Date(),
+        updatedAt:new Date()   
         
        },
     ], {});

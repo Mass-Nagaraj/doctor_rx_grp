@@ -7,24 +7,35 @@ module.exports = {
      await queryInterface.bulkInsert('speciality_masters', [
       {
         name: 'Cardiology',
-        is_active:true
+        is_active:true,
+        createdAt:new Date(),
+        updatedAt:new Date()
       },
       {
         name:"Gynecologist",
-        is_active:true
+        is_active:true,
+        createdAt:new Date(),
+        updatedAt:new Date()
       },
       {
         name: 'Obstetrician',
-        is_active:true
+        is_active:true,
+        createdAt:new Date(),
+        updatedAt:new Date()
         
       },
       {
         name:"Dermatologist",
-        is_active:true
+        is_active:true,
+        createdAt:new Date(),
+        updatedAt:new Date()
       },
       {
         name:"Psychiatrist",
-        is_active:true
+        is_active:true,
+        createdAt:new Date(),
+        updatedAt:new Date()        
+
       },
 
   ], {});
