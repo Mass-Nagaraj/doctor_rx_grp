@@ -14,9 +14,17 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:"doctor_id",
         as:"doctors"
       })
-      this.belongsTo(models.drug_sessions_master,{
+      this.belongsTo(models.drugs,{
         foreignKey:"drug_id",
-        as:"drug_sessions_master"
+        as:"drugs"
+      })
+      this.hasMany(models.rx_associations,{
+        foreignKey:"rx_grp_id",
+        as:"rx_associations"
+      })
+      this.hasMany(models.prescriptions,{
+        foreignKey:"rx_group_id",
+        as:"prescriptions"
       })
     }
   }

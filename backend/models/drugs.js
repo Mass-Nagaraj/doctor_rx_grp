@@ -18,9 +18,21 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:"dose_session_id",
         as:"drug_sessions_master"
       })
+      this.belongsTo(models.dose_timing_master,{
+        foreignKey:"dose_timing_id",
+        as:"dose_timing_master"
+      })
+      this.belongsTo(models.dose_frequency_master ,{
+        foreignKey:"dose_frequency_id",
+        as:"dose_frequency_master"
+      })
       this.hasMany(models.prescriptions,{
         foreignKey:"drug_id",
         as:"prescriptions"
+      })
+      this.hasMany(models.rx_group,{
+        foreignKey:"drug_id",
+        as:"rx_group"
       })
     }
   }

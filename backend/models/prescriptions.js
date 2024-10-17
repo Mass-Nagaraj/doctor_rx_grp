@@ -14,6 +14,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:"drug_id",
         as:"drugs"
       })
+      this.belongsTo(models.rx_group,{
+        foreignKey:"rx_group_id",
+        as:"rx_group"
+      })
+      this.belongsTo(models.rx_associations,{
+        foreignKey:"rx_association_id",
+        as:"rx_associations"
+      })
     }
   }
   prescriptions.init({
