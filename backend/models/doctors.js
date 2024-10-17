@@ -18,13 +18,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:"doctor_id",
         as:"speciality_doctors"
       })
-      this.belongsTo(models.language_master ,{
-        foreignKey:"language_known_id",
-        as:"language_master"
-      })
       this.hasOne(models.rx_group,{
         foreignKey:"doctor_id",
         as:"rx_group"
+      })
+      this.hasMany(models.doctors_languages,{
+        foreignKey:"doctor_id",
+        as:"doctors_languages"
       })
     }
   }
@@ -33,11 +33,8 @@ module.exports = (sequelize, DataTypes) => {
     mail_id: DataTypes.STRING,
     phone_no: DataTypes.STRING,
     qualification: DataTypes.STRING,
-    working_at_id: DataTypes.INTEGER,
-    speciality_master_id: DataTypes.INTEGER,
-    serving_from: DataTypes.STRING,
+    serving_from: DataTypes.DATE,
     address: DataTypes.STRING,
-    language_known_id: DataTypes.INTEGER,
     about: DataTypes.STRING,
     created_by: DataTypes.UUID,
     updated_by: DataTypes.UUID,

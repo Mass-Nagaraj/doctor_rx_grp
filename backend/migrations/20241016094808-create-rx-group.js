@@ -4,18 +4,17 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('rx_groups', {
       id: {
-        allowNull: false,
+      
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,  
         primaryKey: true,
-        type: Sequelize.UUID
+
       },
       name: {
         type: Sequelize.STRING
       },
       doctor_id: {
         type: Sequelize.UUID
-      },
-      drug_id: {
-        type: Sequelize.INTEGER
       },
       is_active: {
         type: Sequelize.BOOLEAN

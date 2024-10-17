@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:"doctor_id",
         as:"doctors"
       })
-      this.belongsTo(models.drugs,{
-        foreignKey:"drug_id",
-        as:"drugs"
-      })
       this.hasMany(models.rx_associations,{
         foreignKey:"rx_grp_id",
         as:"rx_associations"
@@ -26,17 +22,22 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:"rx_group_id",
         as:"prescriptions"
       })
+      this.hasMany(models.rx_group_drugs,{
+        foreignKey:"rx_group_id",
+        as:"rx_group_drugs"
+      })
     }
   }
   rx_group.init({
-    name: DataTypes.STRING,
-    doctor_id: DataTypes.UUID,
-    drug_id: DataTypes.INTEGER,
-    is_active: DataTypes.BOOLEAN,
-    created_by: DataTypes.UUID,
-    updated_by: DataTypes.UUID,
-    deleted_by: DataTypes.UUID,
-    deletedAt: DataTypes.DATE,
+
+      name: DataTypes.STRING,
+      doctor_id: DataTypes.UUID,
+      created_by: DataTypes.UUID,
+      updated_by: DataTypes.UUID,
+      deleted_by: DataTypes.UUID,
+      deletedAt: DataTypes.DATE,
+      is_active: DataTypes.BOOLEAN,
+
   }, {
     sequelize,
     modelName: 'rx_group',

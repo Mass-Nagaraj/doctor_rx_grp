@@ -20,20 +20,11 @@ module.exports = {
       qualification: {
         type: Sequelize.STRING
       },
-      working_at_id: {
-        type: Sequelize.INTEGER
-      },
-      speciality_master_id: {
-        type: Sequelize.INTEGER
-      },
       serving_from: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       address: {
         type: Sequelize.STRING
-      },
-      language_known_id: {
-        type: Sequelize.INTEGER
       },
       about: {
         type: Sequelize.STRING
