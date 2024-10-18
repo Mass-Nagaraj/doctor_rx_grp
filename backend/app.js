@@ -2,6 +2,7 @@ const express=require('express');
 const { Sequelize } = require('sequelize');
 const app=express();
 const {sequelize} =require('./models')
+const swaggerDocs = require("./src/utils/swagger.js");
 const cors=require('cors')
 
 require('dotenv').config({
@@ -31,7 +32,8 @@ app.use("/rx/",router);
 const PORT= process.env.PORT || 8050;
 
 app.listen(8050,()=>{
-    sequelize.authenticate()
+    sequelize.authenticate();
+    swaggerDocs(app,PORT);
     console.log("Server is listening on Port ",PORT)
 })
 

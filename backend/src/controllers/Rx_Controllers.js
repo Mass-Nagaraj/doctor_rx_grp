@@ -1,7 +1,6 @@
 const express=require('express');
 const { doctors,rx_group,rx_group_drugs,drugs,rx_associations }=require('../../models');
 const { v4: uuidv4 } = require('uuid');
-const { DATE } = require('sequelize');
 
 
 
@@ -173,7 +172,7 @@ const addDoctor=async(req,res)=>{
           mail_id: req.body.mail_id,
           phone_no:req.body.phone_no,
           qualification:req.body.qualification,
-          serving_from:DATE(),
+          serving_from:Date(),
           address:req.body.address,
           about:req.body.about,
           
