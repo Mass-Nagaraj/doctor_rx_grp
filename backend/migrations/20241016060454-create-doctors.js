@@ -29,6 +29,9 @@ module.exports = {
       about: {
         type: Sequelize.STRING
       },
+      is_active: {
+        type: Sequelize.BOOLEAN
+      },
       created_by:{
         type:Sequelize.UUID()
       },

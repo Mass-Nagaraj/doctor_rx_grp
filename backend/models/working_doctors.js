@@ -22,7 +22,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   working_doctors.init({
     doctor_id: DataTypes.UUID,
-    working_id: DataTypes.INTEGER
+    working_id: DataTypes.INTEGER,
+    is_active: DataTypes.BOOLEAN,
+    created_by: DataTypes.UUID,
+    updated_by: DataTypes.UUID,
+    deleted_by: DataTypes.UUID,
+    deletedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'working_doctors',

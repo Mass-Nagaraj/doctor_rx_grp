@@ -49,7 +49,10 @@ const addDrug=async (req,res)=>{
               id: uuidv4(),
               name: single_drug.name,
               drug_category_id: single_drug.drug_category_id,
-              dose_session_id:single_drug.dose_session_id,
+              is_morn:single_drug.is_morn,
+              is_afternoon:single_drug.is_afternoon,
+              is_evening:single_drug.is_evening,
+              is_night:single_drug.is_night,
               dose_timing_id: single_drug.dose_timing_id,
               dose_frequency_id: single_drug.dose_frequency_id,
               is_active: single_drug.is_active,
@@ -63,7 +66,7 @@ const addDrug=async (req,res)=>{
       }else{
 
         console.log(req.body, " ",Object.keys(req.body).length)
-        if( Object.keys(req.body).length ===0 || !req.body.name || !req.body.drug_category_id || !req.body.dose_session_id || !req.body.dose_timing_id || !req.body.dose_frequency_id || !req.body.is_active ) {
+        if( Object.keys(req.body).length ===0 || !req.body.name || !req.body.drug_category_id  || !req.body.dose_timing_id || !req.body.dose_frequency_id || !req.body.is_active ) {
             throw new Error("Err occurs while sending request datas")
         }
 
@@ -71,7 +74,10 @@ const addDrug=async (req,res)=>{
              id: uuidv4(),
               name: req.body.name,
               drug_category_id: req.body.drug_category_id,
-              dose_session_id: req.body.dose_session_id,
+              is_morn: req.body.is_morn,
+              is_afternoon: req.body.is_afternoon,
+              is_evening: req.body.is_evening,
+              is_night: req.body.is_night,
               dose_timing_id: req.body.dose_timing_id,
               dose_frequency_id: req.body.dose_frequency_id,
               is_active: req.body.is_active,
@@ -158,7 +164,7 @@ const addDrug_into_RxGrp=async(req,res)=>{
      });
       
       res.status(200).send(drug);
-      console.log(drug);
+    //   console.log(drug);
 }
 
 const addDoctor=async(req,res)=>{
@@ -186,22 +192,21 @@ const addDoctor=async(req,res)=>{
 
 const addAssociation=async(req,res)=>{
     console.log(req.body)
-    if( Object.keys(req.body).length ===0 || !req.body.name  || !req.body.rx_grp_id || !req.body.is_active  ) {
+    if( Object.keys(req.body).length ===0 || !req.body.rx_grp_Ids || !req.body.is_active  ) {
         throw new Error("Err occurs while sending request datas")
     }
+    const { rx_grp_Ids } = req.body;
+    
+    for (const rx_grp_id of rx_grp_Ids) {
+        await rx_associations.create({
+            id: uuidv4(),
+            rx_grp_id: rx_grp_id,
+            is_active: req.body.is_active
+        });
+    }
 
-       const association = await rx_associations.create({
-          id:uuidv4(),
-          name: req.body.name,
-          rx_grp_id: req.body.rx_grp_id,
-          is_active:req.body.is_active,
-            
-     });
+      res.status(200).send("Insert RX Grps success into Association");
 
-     
-      
-      res.status(200).send(association);
-      console.log(association);
 }
 
 
@@ -226,7 +231,99 @@ const addPrescription=async(req,res)=>{
       console.log(prescription);
 }
 
+const EditDrug_in_RX=async(req,res)=>{
 
+    // console.log(req.body)
+    if( Object.keys(req.body).length ===0  ) {
+        throw new Error("Err occurs while sending request datas")
+    }
+
+    if(req.body.Update_drugs){
+
+        const {Update_drugs,Delete_drugs,insert_drugs} = req.body;
+        
+        for(const updates of Update_drugs) {
+            const {id,updateDatas}=updates;
+            await drugs.update(updateDatas,{ where: { id: id} })  
+        }    
+        
+        const updatedGrugs= await drugs.findAll({
+            where:{id:Update_drugs.map(update=> update.id) } 
+        })
+        res.status(200).send("Updated Success: ",updatedGrugs);
+    }
+
+    if(req.body.Delete_drugs) {
+
+        // Type Delete_drugs -- Array
+        
+        const {Delete_drugs}=req.body;
+        await rx_group_drugs.destroy( { where : { id: Delete_drugs }} );
+         res.status(200).send("Drug Deleted Success in that RX Group...!")
+
+    }
+
+    if(req.body.add_drugs_into_RX) {
+        
+        const add_drugs_into_RX = req.body.add_drugs_into_RX;
+        console.log(req.body.add_drugs_into_RX)
+        if(  !add_drugs_into_RX.rx_group_id  || !add_drugs_into_RX.drug_Ids  ) {
+            throw new Error("Err occurs while sending request datas")
+        }
+    
+        const drugIds = add_drugs_into_RX.drug_Ids;
+        console.log("Drugs idss : ", drugIds)
+        const drugDatas = drugIds?.map(drug_idd => ({
+            rx_group_id: add_drugs_into_RX.rx_group_id,
+            drug_id: drug_idd
+        }));
+
+        await rx_group_drugs.bulkCreate(drugDatas)
+
+        const drug = await rx_group_drugs.create({
+              
+              rx_group_id: add_drugs_into_RX.rx_group_id,
+              drug_id: add_drugs_into_RX.drug_id,
+    
+         });
+          
+          res.status(200).send(drug);      
+        
+        // res.status(201).send()
+
+    }
+
+}
+
+const getAssociation = async (req,res) =>{
+    
+    const Rx_associations = await rx_associations.findAll({
+    
+    include:[
+        {
+
+            model:rx_group,
+            as:'rx_group',
+  
+        include:[
+            { 
+                model: rx_group_drugs,
+                as: 'rx_group_drugs',
+                include:[
+                    {
+                        model:drugs,
+                        as:"drugs"
+                    }
+                ]
+            },
+           ]
+         }
+    ],
+
+    })
+    
+    res.status(200).send(Rx_associations);
+}
 
 module.exports={
     sample,
@@ -241,7 +338,9 @@ module.exports={
     addDrug_into_RxGrp,
     addDoctor,
     addAssociation,
-    addPrescription
+    addPrescription,
+    EditDrug_in_RX,
+    getAssociation
 }
 
 

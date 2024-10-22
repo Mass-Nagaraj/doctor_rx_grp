@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.UUID
       },
-      name: {
-        type: Sequelize.STRING
-      },
       rx_grp_id: {  
         type: Sequelize.UUID
       },

@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         as:"speciality_doctors"
       })
       this.hasOne(models.rx_group,{
-        foreignKey:"doctor_id",
+        foreignKey:"created_by",
         as:"rx_group"
       })
       this.hasMany(models.doctors_languages,{
@@ -36,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     serving_from: DataTypes.DATE,
     address: DataTypes.STRING,
     about: DataTypes.STRING,
+    is_active: DataTypes.BOOLEAN,
     created_by: DataTypes.UUID,
     updated_by: DataTypes.UUID,
     deleted_by: DataTypes.UUID,

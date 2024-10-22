@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
   working_places_master.init({
     name: DataTypes.STRING,
     is_active: DataTypes.BOOLEAN,
+    created_by: DataTypes.UUID,
+    updated_by: DataTypes.UUID,
+    deleted_by: DataTypes.UUID,
+    deletedAt: DataTypes.DATE,
     
   }, {
     sequelize,

@@ -13,9 +13,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      doctor_id: {
-        type: Sequelize.UUID
-      },
       is_active: {
         type: Sequelize.BOOLEAN
       },

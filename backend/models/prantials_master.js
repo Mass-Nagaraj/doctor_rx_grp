@@ -3,26 +3,26 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class drug_sessions_master extends Model {
+  class prantials_master extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.drugs,{
-        foreignKey:"dose_session_id",
-        as:"drugs"
-      })
-    
+      // define association here
     }
   }
-  drug_sessions_master.init({
+  prantials_master.init({
     name: DataTypes.STRING,
-    created_at: DataTypes.DATE
+    is_active: DataTypes.BOOLEAN,
+    created_by: DataTypes.UUID,
+    updated_by: DataTypes.UUID,
+    deleted_by: DataTypes.UUID,
+    deletedAt: DataTypes.DATE,
   }, {
     sequelize,
-    modelName: 'drug_sessions_master',
+    modelName: 'prantials_master',
   });
-  return drug_sessions_master;
+  return prantials_master;
 };

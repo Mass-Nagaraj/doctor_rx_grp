@@ -15,6 +15,15 @@ module.exports = {
       is_active: {
         type: Sequelize.BOOLEAN
       },
+      created_by:{
+        type:Sequelize.UUID()
+      },
+      updated_by:{
+        type:Sequelize.UUID()
+      },
+      deleted_by:{
+        type:Sequelize.UUID()
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -22,7 +31,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+      deletedAt:{
+        type: Sequelize.DATE
+      },
     });
   },
   async down(queryInterface, Sequelize) {

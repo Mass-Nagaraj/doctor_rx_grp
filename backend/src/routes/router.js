@@ -362,7 +362,9 @@ router.post('/addAssociation',rx_controllers.addAssociation)
 
 router.post('/addPrescription',rx_controllers.addPrescription)
 
+router.post('/EditDrug_in_RX',rx_controllers.EditDrug_in_RX)
 
+router.get('/getAssociation',rx_controllers.getAssociation)
 
 
 module.exports=router

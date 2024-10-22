@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
   speciality_master.init({
     name: DataTypes.STRING,
     is_active: DataTypes.BOOLEAN,
+    created_by: DataTypes.UUID,
+    updated_by: DataTypes.UUID,
+    deleted_by: DataTypes.UUID,
+    deletedAt: DataTypes.DATE,
+    
     
   }, {
     sequelize,

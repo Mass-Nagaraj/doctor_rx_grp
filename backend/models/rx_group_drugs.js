@@ -22,7 +22,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   rx_group_drugs.init({
     rx_group_id: DataTypes.UUID,
-    drug_id: DataTypes.UUID
+    drug_id: DataTypes.UUID,
+    is_active: DataTypes.BOOLEAN,
+    created_by: DataTypes.UUID,
+    updated_by: DataTypes.UUID,
+    deleted_by: DataTypes.UUID,
+    deletedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'rx_group_drugs',

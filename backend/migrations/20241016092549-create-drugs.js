@@ -11,10 +11,11 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      is_morn:Sequelize.INTEGER,
+      is_afternoon:Sequelize.INTEGER,
+      is_evening:Sequelize.INTEGER,
+      is_night:Sequelize.INTEGER,
       drug_category_id: {
-        type: Sequelize.INTEGER
-      },
-      dose_session_id: {
         type: Sequelize.INTEGER
       },
       dose_timing_id: {
@@ -26,6 +27,8 @@ module.exports = {
       is_active: {
         type: Sequelize.BOOLEAN
       },
+      
+    
       created_by:{
         type:Sequelize.UUID()
       },

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.doctors ,{
-        foreignKey:"doctor_id",
+        foreignKey:"created_by",
         as:"doctors"
       })
       this.hasMany(models.rx_associations,{
@@ -31,12 +31,11 @@ module.exports = (sequelize, DataTypes) => {
   rx_group.init({
 
       name: DataTypes.STRING,
-      doctor_id: DataTypes.UUID,
+      is_active: DataTypes.BOOLEAN,
       created_by: DataTypes.UUID,
       updated_by: DataTypes.UUID,
       deleted_by: DataTypes.UUID,
       deletedAt: DataTypes.DATE,
-      is_active: DataTypes.BOOLEAN,
 
   }, {
     sequelize,

@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   rx_associations.init({
-    name: DataTypes.STRING,
     rx_grp_id: DataTypes.UUID,
     is_active: DataTypes.BOOLEAN,
     created_by: DataTypes.UUID,
@@ -34,3 +33,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return rx_associations;
 };
+

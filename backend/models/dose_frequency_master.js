@@ -19,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
   dose_frequency_master.init({
     name: DataTypes.STRING,
     created_at: DataTypes.DATE,
-    is_active: DataTypes.BOOLEAN
+    is_active: DataTypes.BOOLEAN,
+    created_by: DataTypes.UUID,
+    updated_by: DataTypes.UUID,
+    deleted_by: DataTypes.UUID,
+    deletedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'dose_frequency_master',
